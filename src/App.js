@@ -1,72 +1,114 @@
 import React, { Component } from "react";
-
-import Home from "./Home";
-import About from "./About";
-import Item from "./Item";
-
-import newImg from "./assets/download.png";
-
-/*
-  Mounting [ constructor, render, componentDidMount ]
-  Updating [ render,  shouldComponentUpdate ,componentDidUpdate ]
-  UnMounting [ ComponentWillUnMount ]
-*/
+import Counter from "./components/Counter";
+import ProductsList from "./components/ProductsList";
+import Users from "./components/Users";
 
 class App extends Component {
   state = {
-    name: "App Component 2",
-    x: 1,
+    nameChange: "",
+    emailChange: "",
+    numberChange: "",
+
+    username: "",
+    email: "",
+    number: 0,
+
+    isRender: false,
   };
 
-  shouldComponentUpdate(props, nextState) {
-    if (this.state.name == nextState.name) {
-      return false;
-    }
-    console.log("shouldComponentUpdate");
-    return true;
-  }
-
-  componentDidUpdate() {
-    console.log("componentDidUpdate");
-  }
-
-  updateData = () => {
+  handleChange = (e) => {
     this.setState({
-      name: "App Component 4",
+      [e.target.id]: e.target.value,
+      isRender: false,
+    });
+  };
+
+  // handleUserNameChange = (e) => {
+  //   console.log(e.target.type);
+  //   this.setState({
+  //     username: e.target.value,
+  //     isRender: false,
+  //   });
+  // };
+
+  // handleEmailChange = (e) => {
+  //   this.setState({
+  //     email: e.target.value,
+  //     isRender: false,
+  //   });
+  // };
+
+  // handleNumberChange = (e) => {
+  //   this.setState({
+  //     number: e.target.value,
+  //     isRender: false,
+  //   });
+  // };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      isRender: true,
+      numberChange: this.state.number,
+      nameChange: this.state.username,
+      emailChange: this.state.email,
+
+      username: "",
+      email: "",
+      number: "",
     });
   };
 
   render() {
-    console.log("render");
     return (
       <div>
-        {this.state.name}
+        <Counter />
+        <Users />
 
-        <button onClick={this.updateData}> update </button>
+        {this.state.isRender ? (
+          <>
+            <p>{this.state.numberChange}</p>
+            <p>{this.state.nameChange}</p>
+            <p>{this.state.emailChange}</p>
+          </>
+        ) : (
+          ""
+        )}
 
-        <Home x="1" />
-        <hr />
-        {/* <About /> */}
-        {/* {this.state.products.map((p) => {
-          return (
-            <span>
-              {p.title} {p.price}
-            </span>
-          );
-        })} */}
-        <img src={newImg} />
-        <ul>
-          <Item />
-        </ul>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            id="username"
+            value={this.state.username}
+            placeholder="Enter username"
+            onChange={this.handleChange}
+          />
+          <input
+            type="email"
+            id="email"
+            value={this.state.email}
+            placeholder="Enter email"
+            onChange={this.handleChange}
+          />
+          <input
+            type="number"
+            value={this.state.number}
+            id="number"
+            placeholder="Enter Number"
+            onChange={this.handleChange}
+          />
+
+          <input type="submit" />
+        </form>
+        {/* 
+        {this.state.isTrue ? (
+          <div>Condition True</div>
+        ) : (
+          <div>Condition False</div>
+        )} */}
       </div>
     );
   }
 }
-
-// Function  Component ( StateLess Comp )
-// Hooks => state => function component
-// function App() {
-//   return <div className="app"></div>;
-// }
 
 export default App;
