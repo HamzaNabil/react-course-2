@@ -2,3 +2,22 @@
   margin: 0;
   padding: 0;
 }
+
+ul {
+  padding: 10px;
+  background-color: #000;
+}
+
+ul li {
+  display: inline-block;
+}
+
+ul li a {
+  color: #fff;
+  display: block;
+  margin: 3px;
+}
+
+a.active {
+  color: red;
+}

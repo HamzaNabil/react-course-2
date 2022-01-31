@@ -1,112 +1,48 @@
 import React, { Component } from "react";
-import Counter from "./components/Counter";
-import ProductsList from "./components/ProductsList";
-import Users from "./components/Users";
+import About from "./components/About";
+import Home from "./components/Home";
+import Products from "./components/Products";
+
+import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+import ProductDetails from "./components/ProductDetails";
+import Checkout from "./components/Checkout";
+import NewProducts from "./components/NewProducts";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
-  state = {
-    nameChange: "",
-    emailChange: "",
-    numberChange: "",
-
-    username: "",
-    email: "",
-    number: 0,
-
-    isRender: false,
-  };
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value,
-      isRender: false,
-    });
-  };
-
-  // handleUserNameChange = (e) => {
-  //   console.log(e.target.type);
-  //   this.setState({
-  //     username: e.target.value,
-  //     isRender: false,
-  //   });
-  // };
-
-  // handleEmailChange = (e) => {
-  //   this.setState({
-  //     email: e.target.value,
-  //     isRender: false,
-  //   });
-  // };
-
-  // handleNumberChange = (e) => {
-  //   this.setState({
-  //     number: e.target.value,
-  //     isRender: false,
-  //   });
-  // };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-      isRender: true,
-      numberChange: this.state.number,
-      nameChange: this.state.username,
-      emailChange: this.state.email,
-
-      username: "",
-      email: "",
-      number: "",
-    });
-  };
+  state = {};
 
   render() {
     return (
-      <div>
-        <Counter />
-        <Users />
+      <BrowserRouter>
+        <ul>
+          <li>
+            <NavLink to="/">Home </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About </NavLink>
+          </li>
+          <li>
+            <NavLink to="/products">Products </NavLink>
+          </li>
+          <li>
+            <NavLink to="/checkout">Checkout </NavLink>
+          </li>
+        </ul>
 
-        {this.state.isRender ? (
-          <>
-            <p>{this.state.numberChange}</p>
-            <p>{this.state.nameChange}</p>
-            <p>{this.state.emailChange}</p>
-          </>
-        ) : (
-          ""
-        )}
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/new" element={<NewProducts />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
 
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            id="username"
-            value={this.state.username}
-            placeholder="Enter username"
-            onChange={this.handleChange}
-          />
-          <input
-            type="email"
-            id="email"
-            value={this.state.email}
-            placeholder="Enter email"
-            onChange={this.handleChange}
-          />
-          <input
-            type="number"
-            value={this.state.number}
-            id="number"
-            placeholder="Enter Number"
-            onChange={this.handleChange}
-          />
-
-          <input type="submit" />
-        </form>
-        {/* 
-        {this.state.isTrue ? (
-          <div>Condition True</div>
-        ) : (
-          <div>Condition False</div>
-        )} */}
-      </div>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     );
   }
 }
