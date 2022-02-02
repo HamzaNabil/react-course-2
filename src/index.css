@@ -1,11 +1,20 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-ul {
-  padding: 10px;
-  background-color: #000;
+.header,
+.footer {
+  background-color: blueviolet;
+  color: #fff;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+
+main {
+  min-height: calc(100vh - 80px);
 }
 
 ul li {
@@ -13,11 +22,40 @@ ul li {
 }
 
 ul li a {
+  text-decoration: none;
   color: #fff;
-  display: block;
-  margin: 3px;
+  margin: 0 5px;
 }
 
-a.active {
-  color: red;
+ul li a.active {
+  color: #000;
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  display: block;
+  width: 45%;
+  margin: 10px 0;
+  border: 1px solid #000;
+  padding: 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.product-form {
+  padding: 10px;
+}
+
+.product-form input {
+  height: 40px;
+  width: 100%;
+  margin: 10px 0;
+  display: block;
+  border: 1px solid gray;
+  padding: 5px;
 }
