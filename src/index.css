@@ -43,6 +43,9 @@ ul li a.active {
   margin: 10px 0;
   border: 1px solid #000;
   padding: 10px;
+}
+
+.product-item a {
   color: #000;
   text-decoration: none;
 }

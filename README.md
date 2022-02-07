@@ -1,4 +1,3 @@
-- 1- product details
-- 2- add product [ form ]
-- 3- delete product
-- 4- Saving Product into DB [localstorage]
+- 1- delete Product
+- 2- save Prodcut to LocalStorag
+- 3- Filter Products depend on price

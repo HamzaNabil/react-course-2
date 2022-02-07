@@ -8,10 +8,18 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import AddProduct from "./components/AddProduct";
 
+if (!localStorage.getItem("products")) {
+  localStorage.setItem("products", JSON.stringify(data));
+}
+
+let allItems = localStorage.getItem("products")
+  ? JSON.parse(localStorage.getItem("products"))
+  : [];
+
 class App extends Component {
   state = {
-    products: data,
-
+    products: allItems,
+    filteredProducts: [],
     title: "",
     price: "",
     desc: "",
@@ -28,16 +36,37 @@ class App extends Component {
 
     // let lastId = this.state.products[this.state.products.length - 1].id;
 
+    this.setState(
+      {
+        products: [
+          ...this.state.products,
+          {
+            id: this.state.products.length + 1,
+            title: this.state.title,
+            price: this.state.price,
+            desc: this.state.desc,
+          },
+        ],
+      },
+      () => {
+        localStorage.setItem("products", JSON.stringify(this.state.products));
+      }
+    );
+  };
+
+  handleDeleteProduct = (id) => {
+    // 1
+    let products = this.state.products.filter((p) => p.id != id);
+    this.setState({ products }, () => {
+      localStorage.setItem("products", JSON.stringify(this.state.products));
+    });
+  };
+
+  handleChangeFilter = (e) => {
+    if (e.target.value == "all") this.setState({ filteredProducts: [] });
+    let products = this.state.products.filter((p) => p.price == e.target.value);
     this.setState({
-      products: [
-        ...this.state.products,
-        {
-          id: this.state.products.length + 1,
-          title: this.state.title,
-          price: this.state.price,
-          desc: this.state.desc,
-        },
-      ],
+      filteredProducts: products,
     });
   };
 
@@ -50,7 +79,14 @@ class App extends Component {
             <Route path="/" element={<Home />} />
             <Route
               path="/products"
-              element={<ProductsList products={this.state.products} />}
+              element={
+                <ProductsList
+                  products={this.state.products}
+                  filteredProducts={this.state.filteredProducts}
+                  handleDeleteProduct={this.handleDeleteProduct}
+                  handleChangeFilter={this.handleChangeFilter}
+                />
+              }
             />
             <Route
               path="/products/:id"
