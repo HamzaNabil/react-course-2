@@ -10,6 +10,9 @@ import AddProduct from "./components/AddProduct";
 import Counter2 from "./components/Hooks/Counter";
 import Home from "./components/Home";
 
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 if (!localStorage.getItem("products")) {
   localStorage.setItem("products", JSON.stringify(data));
 }
@@ -56,7 +59,7 @@ function App() {
   };
 
   return (
-    <DataContext.Provider value={{ products: products }}>
+    <Provider store={store}>
       <BrowserRouter>
         <Header />
         <main>
@@ -93,7 +96,7 @@ function App() {
         </main>
         <Footer />
       </BrowserRouter>
-    </DataContext.Provider>
+    </Provider>
   );
 }
 

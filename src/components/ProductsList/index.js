@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { DataContext } from "../../App";
 
 function ProductsList(props) {
-  const { products } = useContext(DataContext);
+  const { products } = useSelector((state) => state);
+
+  // const { products } = props;
   return (
     <>
       <select onChange={props.handleChangeFilter}>

@@ -1,10 +1,16 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import { useSelector } from "react-redux";
 import Child from "../Child";
+import Counter from "../Counter";
 
 // useState , useEffect , useRef , useCallback, useContext
 // useReducer , useSelector, useDispatch => Redux = Context
 
 function Home() {
+  // useSelector
+  const d = useSelector((state) => state);
+  console.log("all State", d);
+
   const [count, setCount] = useState(0);
   const [user, setUser] = useState("");
 
@@ -22,7 +28,8 @@ function Home() {
 
   return (
     <div>
-      This is Home
+      <Counter />
+      {/* This is Home
       <button onClick={() => setCount(count + 1)}> +1 </button>
       {count}
       <input
@@ -30,7 +37,7 @@ function Home() {
         placeholder="Enter User"
         onChange={(e) => setUser(e.target.value)}
       />
-      <Child count={count} updateCount={updateCount} />
+      <Child count={count} updateCount={updateCount} /> */}
     </div>
   );
 }
