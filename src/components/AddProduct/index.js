@@ -15,19 +15,19 @@ function AddProduct(props) {
         type="text"
         id="title"
         placeholder="Enter Title"
-        onChange={props.handleChange}
+        onChange={(e) => props.setTitle(e.target.value)}
       />
       <input
         type="text"
         placeholder="Enter Desc"
         id="desc"
-        onChange={props.handleChange}
+        onChange={(e) => props.setDesc(e.target.value)}
       />
       <input
         type="number"
         placeholder="Enter Price"
         id="price"
-        onChange={props.handleChange}
+        onChange={(e) => props.setPrice(e.target.value)}
       />
       <input type="submit" value="Add Product" />
     </form>

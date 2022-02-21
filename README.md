@@ -1,3 +1,3 @@
-- 1- delete Product
-- 2- save Prodcut to LocalStorag
-- 3- Filter Products depend on price
+1- useRef
+2- useContext
+3- Performance: memo - useCallback
