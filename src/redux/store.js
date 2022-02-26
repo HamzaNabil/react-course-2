@@ -1,16 +1,13 @@
-import { createStore } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import counterReducer from "./reducers/counterReducer";
+import userReducer from "./reducers/userReducer";
+import thunk from "redux-thunk";
 
-const initState = {
-  products: JSON.parse(localStorage.getItem("products")) || [],
-};
+const combine = combineReducers({
+  counter: counterReducer,
+  user: userReducer,
+});
 
-function reducer(state = initState, action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
-const store = createStore(reducer);
+const store = createStore(combine, applyMiddleware(thunk));
 
 export default store;
