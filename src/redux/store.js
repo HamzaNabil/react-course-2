@@ -1,13 +1,9 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import counterReducer from "./reducers/counterReducer";
-import userReducer from "./reducers/userReducer";
+import { createStore, applyMiddleware } from "redux";
+import productReducer from "./reducers/productReducer";
 import thunk from "redux-thunk";
 
-const combine = combineReducers({
-  counter: counterReducer,
-  user: userReducer,
-});
+const enhance = window.__REDUX_DEVTOOLS_EXTENSION__;
 
-const store = createStore(combine, applyMiddleware(thunk));
+const store = createStore(productReducer, enhance(applyMiddleware(thunk)));
 
 export default store;

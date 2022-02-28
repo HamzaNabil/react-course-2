@@ -1,5 +1,4 @@
-export const increment = "increment";
-export const decrement = "decrement";
-export const incrementByValue = "incrementByValue";
-
-export const addUser = "addUser";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const FILTER_PRODUCT = "FILTER_PRODUCT";
+export const RESET_FILTER = "RESET_FILTER";

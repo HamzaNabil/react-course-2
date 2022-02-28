@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import Child from "../Child";
+// import Child from "../Child";
 import Counter from "../Counter";
 
 // useState , useEffect , useRef , useCallback, useContext
@@ -8,15 +8,15 @@ import Counter from "../Counter";
 
 function Home() {
   // useSelector
-  const d = useSelector((state) => state);
-  console.log("all State", d);
+  // const d = useSelector((state) => state);
+  // console.log("all State", d);
 
-  const [count, setCount] = useState(0);
-  const [user, setUser] = useState("");
+  // const [count, setCount] = useState(0);
+  // const [user, setUser] = useState("");
 
-  const updateCount = useCallback(() => {
-    setCount(count + 1);
-  }, [count]);
+  // const updateCount = useCallback(() => {
+  //   setCount(count + 1);
+  // }, [count]);
 
   // useEffect(() => {
   //   fetch("http://localhost:3000/posts")
@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div>
-      <Counter />
+      {/* <Counter /> */}
       {/* This is Home
       <button onClick={() => setCount(count + 1)}> +1 </button>
       {count}

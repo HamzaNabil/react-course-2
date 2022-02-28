@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 // All Products
@@ -7,7 +8,9 @@ import { useParams } from "react-router-dom";
 function ProductDetails(props) {
   const params = useParams();
 
-  let product = props.products.find((p) => p.id == params.id);
+  const { products } = useSelector((state) => state);
+
+  let product = products.find((p) => p.id == params.id);
 
   return (
     <div>
